@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tes Potensi Diri - STIE Surakarta</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Chart.js untuk Spiderweb -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- html2canvas untuk fitur unduh kartu sebagai PNG -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- STEP 1: FORM PENDAFTARAN -->
+    <section id="step-registration" class="card">
+      <div class="brand-badge">STIE Surakarta • New Student Mapping</div>
+      <h2>Pemetaan Potensi Diri</h2>
+      <p class="subtitle">Kenali kekuatan unik dan arketipe karier bisnismu di kampus sejak hari pertama.</p>
+
+      <form id="student-form">
+        <div class="form-group">
+          <label for="student-name">Nama Lengkap</label>
+          <input type="text" id="student-name" placeholder="Contoh: Budi Santoso" required>
+        </div>
+
+        <div class="form-group">
+          <label for="student-nim">NIM Mahasiswa</label>
+          <input type="text" id="student-nim" placeholder="Contoh: 20261001" required>
+        </div>
+
+        <div class="form-group">
+          <label for="student-prodi">Program Studi</label>
+          <select id="student-prodi" required>
+            <option value="" disabled selected>Pilih Program Studi</option>
+            <option value="S1 Manajemen">S1 Manajemen</option>
+            <option value="S1 Akuntansi">S1 Akuntansi</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary">Mulai Tes Potensi (40 Soal)</button>
+      </form>
+    </section>
+
+    <!-- STEP 2: HALAMAN KUIS / TES -->
+    <section id="step-quiz" class="card hidden">
+      <div class="quiz-header">
+        <span id="quiz-progress-text">Soal 1 dari 40</span>
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <h3 id="question-text">Memuat pertanyaan...</h3>
+      </div>
+
+      <div class="likert-options">
+        <button type="button" class="btn-option" data-value="1">1 • Sangat Tidak Sesuai</button>
+        <button type="button" class="btn-option" data-value="2">2 • Tidak Sesuai</button>
+        <button type="button" class="btn-option" data-value="3">3 • Netral / Ragu-ragu</button>
+        <button type="button" class="btn-option" data-value="4">4 • Sesuai</button>
+        <button type="button" class="btn-option" data-value="5">5 • Sangat Sesuai</button>
+      </div>
+    </section>
+
+    <!-- STEP 3: HASIL & SHAREABLE CARD -->
+    <section id="step-result" class="hidden">
+      <!-- Area yang akan di-capture jadi gambar -->
+      <div id="capture-card" class="result-card">
+        <div class="card-header">
+          <div class="campus-logo">STIE SURAKARTA</div>
+          <span class="verified-tag">Talent Profile Verified</span>
+        </div>
+
+        <div class="user-meta">
+          <h2 id="res-name">-</h2>
+          <p id="res-nim-prodi">- • -</p>
+        </div>
+
+        <div class="archetype-badge">
+          <span class="label">ARKETIPE POTENSI</span>
+          <h3 id="res-archetype-title">The Strategic Catalyst</h3>
+        </div>
+
+        <!-- Radar / Spiderweb Chart -->
+        <div class="chart-container">
+          <canvas id="radarChart"></canvas>
+        </div>
+
+        <p id="res-archetype-desc" class="archetype-description">
+          Deskripsi potensi diri mahasiswa.
+        </p>
+
+        <div class="card-footer">
+          <span>#BanggaSTIESurakarta</span>
+          <span>#FutureBusinessLeader</span>
+        </div>
+      </div>
+
+      <!-- Tombol Aksi -->
+      <div class="result-actions">
+        <button id="btn-download" class="btn-primary">📸 Download Kartu (Siap Share ke IG/WA)</button>
+        <button id="btn-restart" class="btn-secondary">Ulangi Tes</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

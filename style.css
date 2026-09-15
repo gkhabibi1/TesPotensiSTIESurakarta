@@ -1,0 +1,309 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  color: #000000;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Card Style Minimalis */
+.card {
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 16px;
+  padding: 32px 24px;
+  box-shadow: 6px 6px 0px #000000; /* Aksen brutalist modern tipis */
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Badge & Headings */
+.brand-badge {
+  display: inline-block;
+  background: #000000;
+  color: #ddff00;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 900;
+  color: #000000;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #555555;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* Form Styling */
+.form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  color: #000000;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 14px;
+  background: #ffffff;
+  border: 1.5px solid #000000;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #000000;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus, .form-group select:focus {
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(221, 255, 0, 0.7);
+}
+
+/* Tombol */
+.btn-primary {
+  width: 100%;
+  background: #000000;
+  color: #ffffff;
+  border: 1.5px solid #000000;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #ddff00;
+  color: #000000;
+}
+
+.btn-secondary {
+  width: 100%;
+  background: #ffffff;
+  color: #000000;
+  border: 1.5px solid #000000;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #f4f4f4;
+}
+
+/* Kuis & Progress */
+.quiz-header {
+  margin-bottom: 24px;
+}
+
+#quiz-progress-text {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #f0f0f0;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+#progress-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: #ddff00;
+  border-right: 1.5px solid #000000;
+  transition: width 0.25s ease;
+}
+
+.question-box {
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.question-box h3 {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #000000;
+}
+
+.likert-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-option {
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1.5px solid #000000;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-option:hover {
+  background: #ddff00;
+  transform: translateY(-1px);
+}
+
+/* Hasil / Shareable Card Minimalis */
+.result-card {
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 16px;
+  padding: 28px 20px;
+  color: #000000;
+  text-align: center;
+  box-shadow: 8px 8px 0px #000000;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid #000000;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.campus-logo {
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-size: 13px;
+  color: #000000;
+}
+
+.verified-tag {
+  font-size: 10px;
+  font-weight: 800;
+  background: #ddff00;
+  color: #000000;
+  border: 1px solid #000000;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.user-meta h2 {
+  color: #000000;
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 2px;
+}
+
+.user-meta p {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555555;
+  margin-bottom: 16px;
+}
+
+.archetype-badge {
+  background: #000000;
+  border-radius: 8px;
+  padding: 12px 10px;
+  margin-bottom: 16px;
+}
+
+.archetype-badge .label {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+}
+
+.archetype-badge h3 {
+  font-size: 18px;
+  font-weight: 900;
+  color: #ddff00;
+  margin-top: 4px;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 16px auto;
+}
+
+.archetype-description {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: #222222;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  color: #000000;
+  border-top: 1.5px solid #000000;
+  padding-top: 12px;
+}
+
+.result-actions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
