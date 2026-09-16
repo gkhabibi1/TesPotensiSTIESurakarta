@@ -3,112 +3,245 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tes Potensi Diri - STIE Surakarta</title>
+  <title>Auditor Challenge: Tes Ketelitian Tingkat Lanjut - STIE Surakarta</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Chart.js untuk Spiderweb -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- html2canvas untuk fitur unduh kartu sebagai PNG -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
-  <div class="container">
+  <div class="container" id="main-container">
     
     <!-- STEP 1: FORM PENDAFTARAN -->
     <section id="step-registration" class="card">
-      <div class="brand-badge">STIE Surakarta • New Student Mapping</div>
-      <h2>Pemetaan Potensi Diri</h2>
-      <p class="subtitle">Kenali kekuatan unik dan arketipe karier bisnismu di kampus sejak hari pertama.</p>
+      <div class="brand-badge">STIE Surakarta • Auditor Challenge</div>
+      <h2>Tes Ketelitian Tingkat Lanjut</h2>
+      <p class="subtitle">Uji fokus, ketelitian data, dan ketahanan visualmu dalam tantangan standar audit akuntansi &amp; manajemen.</p>
+
+      <div class="briefing-box">
+        <div class="briefing-item">
+          <span class="brief-icon">⏱️</span>
+          <div>
+            <strong>Durasi 20 Menit</strong>
+            <p>Timer countdown otomatis. Manajemen waktu adalah kunci.</p>
+          </div>
+        </div>
+        <div class="briefing-item">
+          <span class="brief-icon">📊</span>
+          <div>
+            <strong>6 Soal Tantangan Standar Audit</strong>
+            <p>Matriks Visual (20x20), Rekonsiliasi Bank (30 Data), dan Audit Faktur.</p>
+          </div>
+        </div>
+        <div class="briefing-item">
+          <span class="brief-icon">🎯</span>
+          <div>
+            <strong>Pemetaan Bakat &amp; Jurusan</strong>
+            <p>Evaluasi otomatis jurusan S1 Akuntansi atau S1 Manajemen STIE Surakarta.</p>
+          </div>
+        </div>
+      </div>
 
       <form id="student-form">
         <div class="form-group">
           <label for="student-name">Nama Lengkap</label>
-          <input type="text" id="student-name" placeholder="Contoh: Budi Santoso" required>
+          <input type="text" id="student-name" placeholder="Contoh: Budi Santoso" required autocomplete="name">
         </div>
 
         <div class="form-group">
-          <label for="student-nim">NIM Mahasiswa</label>
+          <label for="student-nim">NIM / Nomor Pendaftaran</label>
           <input type="text" id="student-nim" placeholder="Contoh: 20261001" required>
         </div>
 
         <div class="form-group">
-          <label for="student-prodi">Program Studi</label>
+          <label for="student-prodi">Program Studi Peminatan Awal</label>
           <select id="student-prodi" required>
             <option value="" disabled selected>Pilih Program Studi</option>
-            <option value="S1 Manajemen">S1 Manajemen</option>
             <option value="S1 Akuntansi">S1 Akuntansi</option>
+            <option value="S1 Manajemen">S1 Manajemen</option>
           </select>
         </div>
 
-        <button type="submit" class="btn-primary">Mulai Tes Potensi (40 Soal)</button>
+        <button type="submit" class="btn-primary btn-large">Mulai Auditor Challenge (20 Menit) 🚀</button>
       </form>
     </section>
 
     <!-- STEP 2: HALAMAN KUIS / TES -->
     <section id="step-quiz" class="card hidden">
-      <div class="quiz-header">
-        <span id="quiz-progress-text">Soal 1 dari 40</span>
-        <div class="progress-bar-bg">
-          <div id="progress-bar-fill"></div>
+      <!-- Top Quiz Bar: Section, Timer, Stepper -->
+      <div class="quiz-top-bar">
+        <div class="quiz-badge-group">
+          <span id="quiz-section-badge" class="section-tag">Bagian 1: Matriks Visual</span>
+          <span id="quiz-progress-text" class="progress-tag">Soal 1 dari 6</span>
+        </div>
+        <div id="timer-box" class="timer-display">
+          <span class="timer-icon">⏱️</span>
+          <span id="timer-text">20:00</span>
         </div>
       </div>
 
-      <div class="question-box">
-        <h3 id="question-text">Memuat pertanyaan...</h3>
+      <!-- Stepper Navigation (1 to 6) -->
+      <div class="stepper-nav" id="stepper-nav" aria-label="Navigasi Soal">
+        <!-- Generated dynamically in JS: 1..6 -->
       </div>
 
-      <div class="likert-options">
-        <button type="button" class="btn-option" data-value="1">1 • Sangat Tidak Sesuai</button>
-        <button type="button" class="btn-option" data-value="2">2 • Tidak Sesuai</button>
-        <button type="button" class="btn-option" data-value="3">3 • Netral / Ragu-ragu</button>
-        <button type="button" class="btn-option" data-value="4">4 • Sesuai</button>
-        <button type="button" class="btn-option" data-value="5">5 • Sangat Sesuai</button>
+      <div class="progress-bar-bg">
+        <div id="progress-bar-fill"></div>
+      </div>
+
+      <!-- Question Instruction & Content Area -->
+      <div class="quiz-body">
+        <div id="instruction-wrapper" class="instruction-box hidden">
+          <div class="instruction-header">
+            <span class="info-badge">PETUNJUK BAGIAN</span>
+          </div>
+          <p id="instruction-text"></p>
+        </div>
+
+        <!-- Dynamic Content Slot (Matrix, Reconciliation Table, Invoice Rules & List) -->
+        <div id="dynamic-content-slot"></div>
+
+        <!-- Question Prompt & Input -->
+        <div class="question-action-card">
+          <div class="question-title-wrap">
+            <span class="q-number-pill" id="q-number-pill">#1</span>
+            <h3 id="question-text" class="question-prompt">Memuat soal...</h3>
+          </div>
+
+          <div id="input-container" class="input-container">
+            <!-- Injected depending on inputType: number or multiselect status -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Navigation Controls -->
+      <div class="quiz-footer-nav">
+        <button type="button" id="btn-prev" class="btn-secondary nav-btn" disabled>
+          ← Sebelumnya
+        </button>
+        <div class="nav-middle-info">
+          <span id="nav-answered-status">Belum dijawab</span>
+        </div>
+        <button type="button" id="btn-next" class="btn-primary nav-btn">
+          Selanjutnya →
+        </button>
+        <button type="button" id="btn-finish" class="btn-finish nav-btn hidden">
+          Selesaikan Tes &amp; Kumpulkan ✓
+        </button>
       </div>
     </section>
 
     <!-- STEP 3: HASIL & SHAREABLE CARD -->
     <section id="step-result" class="hidden">
-      <!-- Area yang akan di-capture jadi gambar -->
+      <!-- Area yang akan di-capture jadi gambar PNG -->
       <div id="capture-card" class="result-card">
         <div class="card-header">
-          <div class="campus-logo">STIE SURAKARTA</div>
-          <span class="verified-tag">Talent Profile Verified</span>
+          <div class="campus-brand">
+            <span class="campus-logo">STIE SURAKARTA</span>
+            <span class="sub-campus">Sekolah Tinggi Ilmu Ekonomi Surakarta</span>
+          </div>
+          <div class="verified-tag-wrap">
+            <span class="verified-tag">AUDITOR CHALLENGE VERIFIED</span>
+          </div>
         </div>
 
-        <div class="user-meta">
-          <h2 id="res-name">-</h2>
-          <p id="res-nim-prodi">- • -</p>
+        <div class="user-meta-banner">
+          <div class="user-info">
+            <span class="label-tiny">PROFIL KANDIDAT AUDITOR</span>
+            <h2 id="res-name">-</h2>
+            <p id="res-nim-prodi">- • -</p>
+          </div>
+          <div class="time-spent-badge" id="res-time-spent">
+            Waktu: -
+          </div>
         </div>
 
-        <div class="archetype-badge">
-          <span class="label">ARKETIPE POTENSI</span>
-          <h3 id="res-archetype-title">The Strategic Catalyst</h3>
+        <!-- Score Banner -->
+        <div class="score-banner">
+          <div class="score-number-box">
+            <span class="score-label">SKOR KETELITIAN</span>
+            <div class="score-value-row">
+              <span id="res-score-value" class="score-big">0</span>
+              <span class="score-max">/ 6</span>
+            </div>
+            <span id="res-accuracy-pct" class="score-pct">0% Akurasi</span>
+          </div>
+
+          <div class="score-badge-box">
+            <div id="res-badge-pill" class="badge-pill">Tingkat Ketelitian Elit</div>
+            <h3 id="res-tier-title" class="tier-title">The Natural Auditor</h3>
+          </div>
         </div>
 
-        <!-- Radar / Spiderweb Chart -->
-        <div class="chart-container">
-          <canvas id="radarChart"></canvas>
+        <!-- Recommended Major Box -->
+        <div class="recommendation-card">
+          <span class="rec-label">REKOMENDASI PENJURUSAN KAMPUS</span>
+          <div class="rec-major-highlight" id="res-recommended-major">
+            S1 Akuntansi - STIE Surakarta
+          </div>
+          <p id="res-evaluation-message" class="rec-message">
+            Deskripsi evaluasi bakat.
+          </p>
         </div>
 
-        <p id="res-archetype-desc" class="archetype-description">
-          Deskripsi potensi diri mahasiswa.
-        </p>
+        <!-- Detailed Breakdown Soal -->
+        <div class="breakdown-section">
+          <h4 class="breakdown-title">Lembar Evaluasi Soal (Auditor Log)</h4>
+          <div class="breakdown-grid" id="breakdown-grid">
+            <!-- Generated dynamically in JS -->
+          </div>
+        </div>
 
         <div class="card-footer">
           <span>#BanggaSTIESurakarta</span>
+          <span>#AuditorSTIE</span>
           <span>#FutureBusinessLeader</span>
         </div>
       </div>
 
       <!-- Tombol Aksi -->
       <div class="result-actions">
-        <button id="btn-download" class="btn-primary">📸 Download Kartu (Siap Share ke IG/WA)</button>
-        <button id="btn-restart" class="btn-secondary">Ulangi Tes</button>
+        <button id="btn-download" class="btn-primary btn-large">
+          📸 Download Kartu Hasil (Siap Share ke IG / WA)
+        </button>
+        <button id="btn-restart" class="btn-secondary">
+          🔄 Ulangi Tes dari Awal
+        </button>
       </div>
     </section>
 
   </div>
 
+  <!-- Modal Konfirmasi Selesai -->
+  <div id="confirm-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h3>Selesaikan Auditor Challenge?</h3>
+      <p id="modal-summary-text">Anda telah menjawab 0 dari 6 soal. Jawaban tidak dapat diubah setelah dikirim.</p>
+      <div class="modal-actions">
+        <button type="button" id="btn-modal-cancel" class="btn-secondary">Cek Kembali</button>
+        <button type="button" id="btn-modal-confirm" class="btn-primary">Ya, Kumpulkan Jawaban</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Logic & Questions Data -->
+  <!-- Loaded as ES Module with reliable global fallback -->
+  <script type="module">
+    import { quizConfig, questions, evaluateResult } from './questionsData.js';
+    window.__esModulesSupported = true;
+    window.initAuditorChallenge({ quizConfig, questions, evaluateResult });
+  </script>
   <script src="app.js"></script>
+  <script>
+    // Fallback if type="module" was blocked (e.g. file:/// protocol in Chrome)
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        if (!window.__appInitialized && window.__inlineQuestionsData) {
+          console.info("Using embedded questionsData fallback.");
+          window.initAuditorChallenge(window.__inlineQuestionsData);
+        }
+      }, 100);
+    });
+  </script>
 </body>
 </html>
